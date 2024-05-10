@@ -43,11 +43,11 @@ def chains_and_response(docs):
     return chain.run(docs)
     
 # Page title
-st.set_page_config(page_title='🦜🔗 Text Summarization App')
-st.title('🦜🔗 Text Summarization App')
+st.set_page_config(page_title='🦜🔗 Resumir Texto App')
+st.title('🦜🔗 Resumir Texto App')
 
 # Text input
-txt_input = st.text_area('Enter your text', '', height=200)
+txt_input = st.text_area('Introduce tu texto', '', height=200)
 
 # Form to accept user's text input for summarization
 result = []
@@ -61,5 +61,5 @@ with st.form('summarize_form', clear_on_submit=True):
             result.append(response)
 
 if len(result):
-    st.title('📝✅ Summarization Result')
+    st.title('📝✅ Resultado resumen')
     st.info(response)
