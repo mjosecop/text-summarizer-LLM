@@ -18,21 +18,24 @@ def chunks_and_document(txt):
     
     return docs
     
-# Loading the Llama 2's LLM
-def load_llm():
-    # We instantiate the callback with a streaming stdout handler
-    callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])   
 
-    # loading the LLM model
-    # This open source model can be downloaded from here
-    # Their are multiple models available just replace it in place of model and try it.
-    llm = CTransformers(
-        model=r"llama-2-7b-chat.ggmlv3.q2_K.bin",
-        model_type="llama",
-         max_new_tokens = 512,
-        temperature = 0.5   )
-        
+from transformers import GPT2LMHeadModel
+
+def load_llm():
+    """
+    Esta función carga el modelo LLM (Llama 2's LLM) desde tu perfil de Hugging Face.
+
+    Returns:
+    GPT2LMHeadModel: El modelo LLM cargado.
+    """
+    # Especifica el nombre del modelo y del tokenizador en Hugging Face
+    model_name_or_path = "mjosecop/text-summarizer-LLM"
+
+    # Carga el modelo desde tu perfil de Hugging Face
+    llm = GPT2LMHeadModel.from_pretrained(model_name_or_path)
+
     return llm
+
  
 # this functions is used for applying the llm model with our document 
 def chains_and_response(docs):
